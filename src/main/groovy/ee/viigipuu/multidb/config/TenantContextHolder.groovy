@@ -1,17 +1,21 @@
 package ee.viigipuu.multidb.config
 
-class TenantContextHolder {
-    static ThreadLocal<String> tenantId = new ThreadLocal<String>()
+import org.springframework.stereotype.Component
 
-    static String getTenantId() {
-        return tenantId.get()
+@Component
+class TenantContextHolder {
+
+    private static final ThreadLocal<String> tenantHolder = new ThreadLocal<>()
+
+    static void setTenant(String tenant) {
+        tenantHolder.set(tenant)
     }
 
-    static void setTenantId(String id) {
-        tenantId.set(id)
+    static String getTenant() {
+        tenantHolder.get()
     }
 
     static void clear() {
-        tenantId.remove()
+        tenantHolder.remove()
     }
 }

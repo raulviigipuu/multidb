@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Select
 @Mapper
 interface BookMapper {
 
-    @Select("SELECT * FROM books WHERE tenant_id = #{tenantId}")
-    List<Book> findAllBooksForTenant(@Param("tenantId") String tenantId)
+    @Select("SELECT * FROM books")
+    List<Book> findAll(@Param("tenant") String tenant)
 }
